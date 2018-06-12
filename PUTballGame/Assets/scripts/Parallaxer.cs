@@ -13,9 +13,9 @@ public class Parallaxer : MonoBehaviour {
 	}
 
 	[System.Serializable]
-	public struct YSpawnRange {
-		public float minY;
-		public float maxY;
+	public struct XSpawnRange {
+		public float minX;
+		public float maxX;
 	}
 
 	public GameObject Prefab;
@@ -23,7 +23,7 @@ public class Parallaxer : MonoBehaviour {
 	public float shiftSpeed;
 	public float spawnRate;
 
-	public YSpawnRange ySpawnRange;
+	public XSpawnRange xSpawnRange;
 	public Vector3 defaultSpawnPos;
 	public bool spawnImmediate;
 	public Vector3 immediateSpawnPos;
@@ -91,8 +91,8 @@ public class Parallaxer : MonoBehaviour {
 		Transform t = GetPoolObject();
 		if (t == null) return;
 		Vector3 pos = Vector3.zero;
-		pos.y = Random.Range(ySpawnRange.minY, ySpawnRange.maxY);
-		pos.x = (defaultSpawnPos.x * Camera.main.aspect) / targetAspect;
+		pos.x = Random.Range(xSpawnRange.minX, xSpawnRange.maxX);
+		pos.y = (defaultSpawnPos.y * Camera.main.aspect) / targetAspect;
 		t.position = pos;
 	}
 
@@ -100,9 +100,9 @@ public class Parallaxer : MonoBehaviour {
 		Transform t = GetPoolObject();
 		if (t==null) return;
 		Vector3 pos = Vector3.zero;
-		pos.y = Random.Range(ySpawnRange.minY, ySpawnRange.maxY);
-		pos.x = (immediateSpawnPos.x * Camera.main.aspect) / targetAspect;
-		t.position = pos; 
+        pos.x = Random.Range(xSpawnRange.minX, xSpawnRange.maxX);
+        pos.y = (defaultSpawnPos.y * Camera.main.aspect) / targetAspect;
+        t.position = pos; 
 		Spawn();
 	}
 
@@ -111,14 +111,14 @@ public class Parallaxer : MonoBehaviour {
 		//moving them
 		//discarding them as they go off screen
 		for (int i = 0; i < poolObjects.Length; i++) {
-			poolObjects[i].transform.position += Vector3.right * shiftSpeed * Time.deltaTime;
+			poolObjects[i].transform.position += Vector3.down * shiftSpeed * Time.deltaTime;
 			CheckDisposeObject(poolObjects[i]);
 		}
 	}
 
 	void CheckDisposeObject(PoolObject poolObject) {
 		//place objects off screen
-		if (poolObject.transform.position.x < (-defaultSpawnPos.x * Camera.main.aspect) / targetAspect) {
+		if (poolObject.transform.position.y < (-defaultSpawnPos.y * Camera.main.aspect) / targetAspect) {
 			poolObject.Dispose();
 			poolObject.transform.position = Vector3.one * 1000;
 		}
