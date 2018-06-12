@@ -31,8 +31,6 @@ public class TapController : MonoBehaviour
         forwardRotation = Quaternion.Euler(0, 0, 40);
         game = GameManager.Instance;
         rigidBody.simulated = false;
-        //trail = GetComponent<TrailRenderer>();
-        //trail.sortingOrder = 20; 
     }
 
     void OnEnable()

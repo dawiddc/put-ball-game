@@ -58,13 +58,21 @@ public class Parallaxer : MonoBehaviour {
 		Configure();
 	}
 
-	void Update() {
-		if (game.GameOver) return;
+    private bool startSpawn = false;
 
-		Shift();
+	void Update() {
+        if (game.GameOver) return;
+
+        if(!startSpawn)
+        {
+            Spawn();
+            startSpawn = true;
+        }
+        
+        Shift();
 		spawnTimer += Time.deltaTime;
-		if (spawnTimer > spawnRate) {
-			Spawn();
+        if (spawnTimer > spawnRate) {
+            Spawn();
 			spawnTimer = 0;
 		}
 	}
@@ -89,8 +97,11 @@ public class Parallaxer : MonoBehaviour {
 	void Spawn() {
 		//moving pool objects into place
 		Transform t = GetPoolObject();
-		if (t == null) return;
-		Vector3 pos = Vector3.zero;
+        if (t == null)
+        {
+            return;
+        }
+        Vector3 pos = Vector3.zero;
 		pos.x = Random.Range(xSpawnRange.minX, xSpawnRange.maxX);
 		pos.y = (defaultSpawnPos.y * Camera.main.aspect) / targetAspect;
 		t.position = pos;
@@ -111,14 +122,14 @@ public class Parallaxer : MonoBehaviour {
 		//moving them
 		//discarding them as they go off screen
 		for (int i = 0; i < poolObjects.Length; i++) {
-			poolObjects[i].transform.position += Vector3.down * shiftSpeed * Time.deltaTime;
+            poolObjects[i].transform.position += Vector3.down * shiftSpeed * Time.deltaTime;
 			CheckDisposeObject(poolObjects[i]);
 		}
 	}
 
 	void CheckDisposeObject(PoolObject poolObject) {
 		//place objects off screen
-		if (poolObject.transform.position.y < (-defaultSpawnPos.y * Camera.main.aspect) / targetAspect) {
+		if (poolObject.transform.position.y > (-defaultSpawnPos.y * Camera.main.aspect) / targetAspect) {
 			poolObject.Dispose();
 			poolObject.transform.position = Vector3.one * 1000;
 		}

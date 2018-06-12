@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlatformSpawner : MonoBehaviour {
 
 	[System.Serializable]
-	public struct SpawnHeight {
+	public struct SpawnWidth {
 		public float min;
 		public float max;
 	}
@@ -13,7 +13,7 @@ public class PlatformSpawner : MonoBehaviour {
 	public GameObject PlatformPrefab;
 	public float shiftSpeed;
 	public float spawnRate;
-	public SpawnHeight spawnHeight;
+	public SpawnWidth spawnWidth;
 	public Vector3 spawnPos;
 	public Vector2 targetAspectRatio;
 	public bool beginInScreenCenter;
@@ -71,8 +71,8 @@ public class PlatformSpawner : MonoBehaviour {
 		if (beginInScreenCenter && platforms.Count == 0) {
 			platform.transform.localPosition = Vector3.zero;
 		}
-		float randomYPos = Random.Range(spawnHeight.min, spawnHeight.max);
-		platform.transform.position += Vector3.up * randomYPos;
+		float randomXPos = Random.Range(spawnWidth.min, spawnWidth.max);
+		platform.transform.position += Vector3.right * randomXPos;
 		platforms.Add(platform.transform);
 	}
 
