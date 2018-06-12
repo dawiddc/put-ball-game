@@ -16,6 +16,7 @@ public class TapController : MonoBehaviour
     public AudioSource tapSound;
     public AudioSource scoreSound;
     public AudioSource dieSound;
+    public AudioSource gameSound;
 
     Rigidbody2D rigidBody;
     Quaternion downRotation;
@@ -31,6 +32,8 @@ public class TapController : MonoBehaviour
         forwardRotation = Quaternion.Euler(0, 0, 40);
         game = GameManager.Instance;
         rigidBody.simulated = false;
+        gameSound.Play();
+        gameSound.loop = true;
     }
 
     void OnEnable()
