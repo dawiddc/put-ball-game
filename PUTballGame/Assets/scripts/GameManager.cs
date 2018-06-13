@@ -37,7 +37,8 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void OnEnable() {
-		TapController.OnPlayerDied += OnPlayerDied;
+        scoreText.enabled = false;
+        TapController.OnPlayerDied += OnPlayerDied;
 		TapController.OnPlayerScored += OnPlayerScored;
 		CountdownText.OnCountdownFinished += OnCountdownFinished;
 	}
@@ -66,6 +67,7 @@ public class GameManager : MonoBehaviour {
 		if (score > savedScore) {
 			PlayerPrefs.SetInt("HighScore", score);
 		}
+        scoreText.enabled = false;
 		SetPageState(PageState.GameOver);
 	}
 
@@ -101,7 +103,8 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void StartGame() {
-		SetPageState(PageState.Countdown);
+        scoreText.enabled = true;
+        SetPageState(PageState.Countdown);
 	}
 
 }
