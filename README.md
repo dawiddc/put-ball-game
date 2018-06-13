@@ -1,5 +1,18 @@
 # put-ball-game
 
+# TODO
+<ul>
+	<li>
+		Wyświetlanie aktualnego wyniku tylko po rozpoczęciu gry
+	</li>
+	<li>
+		Opcja: miganie przycisku 'press start'
+	</li>
+	<li>
+		Jakiś wodotrysk po osiągnięciu określonego progu
+	</li>
+</ul>
+
 ## Main task
 Escape all the way down the well by jumping into holes in platforms that are moving up - don't let the ball touch the ceiling
 
