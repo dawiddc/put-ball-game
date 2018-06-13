@@ -3,9 +3,6 @@
 # TODO
 <ul>
 	<li>
-		Wyświetlanie aktualnego wyniku tylko po rozpoczęciu gry
-	</li>
-	<li>
 		Opcja: miganie przycisku 'press start'
 	</li>
 	<li>
@@ -22,7 +19,8 @@ The ball is controlled by touching left and right side of your device's screen. 
 ## Screenshots
 
 <p align="center">
-  <img src="https://i.imgur.com/V9rNkPv.png">
+  <img src="https://i.imgur.com/a5WSBFo.png">
+  <img src="https://i.imgur.com/9Qiay38.png">
   <img src="https://i.imgur.com/t3wFXpE.png">
 </p>
 
